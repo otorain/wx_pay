@@ -204,6 +204,19 @@ module WxPay
       r
     end
 
+    # 解密微信退款回调信息
+    #
+    # result = Hash.from_xml(request.body.read)["xml"]
+    #
+    # data = WxPay::Service.decrypt_refund_notify(result)
+    def decrypt_refund_notify(decrypted_data)
+      aes = OpenSSL::Cipher::AES.new('256-ECB')
+      aes.decrypt
+      aes.key = Digest::MD5.hexdigest(WxPay.key)
+      result = aes.update(Base64.decode64(decrypted_data)) + aes.final
+      Hash.from_xml(result)["root"]
+    end
+
     GETTRANSFERINFO_FIELDS = [:partner_trade_no]
     def self.gettransferinfo(params, options = {})
       params = {
