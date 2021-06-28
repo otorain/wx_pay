@@ -17,5 +17,9 @@ module WxPay
     def success?
       self['return_code'] == SUCCESS_FLAG && self['result_code'] == SUCCESS_FLAG
     end
+
+    def failure?
+      !success?
+    end
   end
 end
