@@ -209,7 +209,7 @@ module WxPay
     # result = Hash.from_xml(request.body.read)["xml"]
     #
     # data = WxPay::Service.decrypt_refund_notify(result)
-    def decrypt_refund_notify(decrypted_data)
+    def self.decrypt_refund_notify(decrypted_data)
       aes = OpenSSL::Cipher::AES.new('256-ECB')
       aes.decrypt
       aes.key = Digest::MD5.hexdigest(WxPay.key)
