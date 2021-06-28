@@ -11,6 +11,7 @@ module WxPay
 
   class<< self
     attr_accessor :appid, :mch_id, :key, :appsecret, :extra_rest_client_options, :debug_mode
+    attr_accessor :sub_appid, :sub_mchid, :cert_path # 添加前两个是为了适配服务商模式，最后一个是为了适配自定义的类库
     attr_accessor :sandbox_mode, :manual_get_sandbox_key
     attr_reader :apiclient_cert, :apiclient_key
 
