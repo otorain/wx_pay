@@ -15,6 +15,8 @@ module WxPay
     attr_accessor :sandbox_mode, :manual_get_sandbox_key
     attr_reader :apiclient_cert, :apiclient_key
 
+    alias :app_secret :appsecret
+
     def set_apiclient_by_pkcs12(str, pass)
       pkcs12 = OpenSSL::PKCS12.new(str, pass)
       @apiclient_cert = pkcs12.certificate
