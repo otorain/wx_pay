@@ -11,6 +11,10 @@ module WxPay
         result['xml'].each_pair do |k, v|
           self[k] = v
         end
+      else
+        result.each_pair do |k, v|
+          self[k] = v
+        end
       end
     end
 
